@@ -1,6 +1,6 @@
 public class MatrizClientes {
 	
-	Cliente[][] matriz;
+	private Cliente[][] matriz;
 
 	public MatrizClientes(int linhas, int colunas) {
 		super();

@@ -10,6 +10,10 @@ public class Visao {
 		JOptionPane.showMessageDialog(null, mensagem);
 	}
 	
+	public int recebeInt(String mensagem) {
+		return Integer.parseInt(JOptionPane.showInputDialog(mensagem));
+	}
+	
 	public double recebeDouble(String mensagem) {
 		return Double.parseDouble(JOptionPane.showInputDialog(mensagem));
 	}

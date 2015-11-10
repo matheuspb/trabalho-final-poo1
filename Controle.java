@@ -2,15 +2,41 @@ public class Controle {
 	
 	public static void main(String[] args) {
 		
-		Produto pao = new Produto("pao", "wickbold", "leite", 5);
-		Produto leite = new Produto("leite", "tirol", "integral", 2);
-		Produto[] produtos = new Produto[2];
-		produtos[0] = pao;
-		produtos[1] = leite;
-		Cliente matheus = new Cliente("matheus", produtos);
-		ClienteEspecial matheusE = new ClienteEspecial(matheus, 0.1);
-		System.out.println(matheusE.getProdutos()[0].getPreco());
-		System.out.println(matheusE.getProdutos()[1].getPreco());
+		Visao visao = new Visao();
+		
+		int linhas = visao.recebeInt("Quantas linhas tem a matriz  de clientes ?");
+		int colunas = visao.recebeInt("Quantas colunas tem a matriz de clientes ?");
+		
+		MatrizClientes matriz = new MatrizClientes(linhas, colunas);
+		
+		String nomeCliente = "";
+		Cliente novoCliente = new Cliente();
+		int numDeProdutos = 0;
+		
+		for (int i = 0; i < linhas; i++) {
+			for (int j = 0; j < colunas; j++) {
+				nomeCliente = visao.recebeString("Qual o nome do cliente na posicao " +
+						i + " " + j + " ?");
+				novoCliente.setNome(nomeCliente);
+				numDeProdutos = visao.recebeInt("Quantos produtos ele comprou ?");
+				Produto[] novosProdutos = new Produto[numDeProdutos];
+				for (int k = 0; k < novosProdutos.length; k++) {
+					String nomeProduto = visao.recebeString("Qual o nome do " +
+							"produto " + (k+1) + " ?");
+					String marcaProduto = visao.recebeString("Qual a marca do " +
+							"produto " + (k+1) + " ?");
+					String tipoProduto = visao.recebeString("Qual o tipo do " +
+							"produto " + (k+1) + " ?");
+					double precoProduto = visao.recebeDouble("Qual o preco do " +
+							"produto " + (k+1) + " ?");
+					Produto novoProduto = new Produto(nomeProduto, marcaProduto,
+							tipoProduto, precoProduto);
+					novosProdutos[k] = novoProduto;
+				}
+				novoCliente.setProdutos(novosProdutos);
+				matriz.colocaCliente(novoCliente, i, j);
+			}
+		}
 		
 	}
 
