@@ -5,6 +5,14 @@ public class Produto {
 	private String tipo;
 	private double preco;
 	
+	public Produto(String nome, String marca, String tipo, double preco) {
+		super();
+		this.nome = nome;
+		this.marca = marca;
+		this.tipo = tipo;
+		this.preco = preco;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

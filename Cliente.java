@@ -3,6 +3,16 @@ public class Cliente {
 	private String nome;
 	private Produto[] produtos;
 	
+	public Cliente() {
+		super();
+	}
+
+	public Cliente(String nome, Produto[] produtos) {
+		super();
+		this.nome = nome;
+		this.produtos = produtos;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
