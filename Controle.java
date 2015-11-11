@@ -9,16 +9,14 @@ public class Controle {
 		
 		MatrizClientes matriz = new MatrizClientes(linhas, colunas);
 		
-		String nomeCliente = "";
 		Cliente novoCliente = new Cliente();
-		int numDeProdutos = 0;
 		
 		for (int i = 0; i < linhas; i++) {
 			for (int j = 0; j < colunas; j++) {
-				nomeCliente = visao.recebeString("Qual o nome do cliente na posicao " +
-						i + " " + j + " ?");
+				String nomeCliente = visao.recebeString("Qual o nome do cliente" +
+						" na posicao " + i + " " + j + " ?");
 				novoCliente.setNome(nomeCliente);
-				numDeProdutos = visao.recebeInt("Quantos produtos ele comprou ?");
+				int numDeProdutos = visao.recebeInt("Quantos produtos ele comprou ?");
 				Produto[] novosProdutos = new Produto[numDeProdutos];
 				for (int k = 0; k < novosProdutos.length; k++) {
 					String nomeProduto = visao.recebeString("Qual o nome do " +
@@ -37,6 +35,7 @@ public class Controle {
 				matriz.colocaCliente(novoCliente, i, j);
 			}
 		}
+		System.out.println(matriz.naoExisteProduto(visao.recebeString("3")));
 		
 	}
 
