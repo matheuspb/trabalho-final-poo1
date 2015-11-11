@@ -11,6 +11,10 @@ public class Controle {
 		
 		for (int i = 0; i < linhas; i++) {
 			for (int j = 0; j < colunas; j++) {
+				String adicionarCliente = visao.recebeString("Quer adicionar" +
+						" cliente na posicao " + i + " " + j + " ?(s/n)");
+				if (!adicionarCliente.equals("s"))
+					continue;
 				Cliente novoCliente = new Cliente();
 				String nomeCliente = visao.recebeString("Qual o nome do cliente" +
 						" na posicao " + i + " " + j + " ?");
@@ -32,12 +36,6 @@ public class Controle {
 				}
 				novoCliente.setProdutos(novosProdutos);
 				matriz.colocaCliente(novoCliente, i, j);
-			}
-		}
-		matriz.ordenarMatriz();
-		for (int i = 0; i < linhas; i++) {
-			for (int j = 0; j < colunas; j++) {
-				System.out.println(matriz.pegaCliente(i, j).getNome());
 			}
 		}
 		
