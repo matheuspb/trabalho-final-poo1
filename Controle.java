@@ -9,10 +9,9 @@ public class Controle {
 		
 		MatrizClientes matriz = new MatrizClientes(linhas, colunas);
 		
-		Cliente novoCliente = new Cliente();
-		
 		for (int i = 0; i < linhas; i++) {
 			for (int j = 0; j < colunas; j++) {
+				Cliente novoCliente = new Cliente();
 				String nomeCliente = visao.recebeString("Qual o nome do cliente" +
 						" na posicao " + i + " " + j + " ?");
 				novoCliente.setNome(nomeCliente);
@@ -35,7 +34,6 @@ public class Controle {
 				matriz.colocaCliente(novoCliente, i, j);
 			}
 		}
-		System.out.println(matriz.naoExisteProduto(visao.recebeString("3")));
 		
 	}
 
