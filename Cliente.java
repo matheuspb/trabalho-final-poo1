@@ -15,6 +15,7 @@ public class Cliente implements Comparable<Cliente> {
 	
 	@Override
 	public int compareTo(Cliente cliente) {
+		// usado para ordenar um array de clientes pelo nome alfabeticamente
 		return this.nome.compareTo(cliente.getNome());
 	}
 	

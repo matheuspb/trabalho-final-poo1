@@ -100,14 +100,17 @@ public class MatrizClientes {
 		 */
 		Cliente[] clientes = new Cliente[matriz.length*matriz[0].length];
 		int indice = 0;
+		// trasnforma a matriz num array
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[0].length; j++) {
 				clientes[indice] = matriz[i][j];
 				indice++;
 			}
 		}
-		Arrays.sort(clientes);
+		// ordena o array auxiliar
+		Arrays.sort(clientes); // utiliza o compareTo da classe Cliente
 		indice = 0;
+		// coloca os elementos de volta na matriz, ordenados
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[0].length; j++) {
 				matriz[i][j] = clientes[indice];
