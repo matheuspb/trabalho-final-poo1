@@ -34,6 +34,12 @@ public class Controle {
 				matriz.colocaCliente(novoCliente, i, j);
 			}
 		}
+		matriz.ordenarMatriz();
+		for (int i = 0; i < linhas; i++) {
+			for (int j = 0; j < colunas; j++) {
+				System.out.println(matriz.pegaCliente(i, j).getNome());
+			}
+		}
 		
 	}
 

@@ -1,4 +1,4 @@
-public class Cliente {
+public class Cliente implements Comparable<Cliente> {
 	
 	private String nome;
 	private Produto[] produtos;
@@ -11,6 +11,11 @@ public class Cliente {
 		super();
 		this.nome = nome;
 		this.produtos = produtos;
+	}
+	
+	@Override
+	public int compareTo(Cliente cliente) {
+		return this.nome.compareTo(cliente.getNome());
 	}
 	
 	public String getNome() {

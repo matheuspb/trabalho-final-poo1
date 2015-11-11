@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class MatrizClientes {
 	
 	private Cliente[][] matriz;
@@ -52,7 +54,7 @@ public class MatrizClientes {
 				}
 			}
 		}
-		// Ninguem comporu :
+		// Ninguem comprou :
 		return "Ninguem comprou " + nome;
 	}
 
@@ -89,6 +91,29 @@ public class MatrizClientes {
 			}
 		}
 		return quantidade;
+	}
+	
+	public void ordenarMatriz() {
+		/*
+		 * item 5:
+		 * ordena a matriz alfabeticamente
+		 */
+		Cliente[] clientes = new Cliente[matriz.length*matriz[0].length];
+		int indice = 0;
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[0].length; j++) {
+				clientes[indice] = matriz[i][j];
+				indice++;
+			}
+		}
+		Arrays.sort(clientes);
+		indice = 0;
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[0].length; j++) {
+				matriz[i][j] = clientes[indice];
+				indice++;
+			}
+		}
 	}
 	
 }
