@@ -39,6 +39,51 @@ public class Controle {
 			}
 		}
 		
+		String menu = "Digite o numero da acao que voce quer realizar:\n" +
+				"1. Pesquisar quantos clientes compraram um produto\n" +
+				"2. Pesquisar a existencia de um produto, e se existir, quem o possue\n" +
+				"3. Pesquisar a inexistencia de um produto\n" +
+				"4. Informa a quantidade total de clientes, e quantos desses sao especiais\n" +
+				"5. Ordena a matriz alfabeticamente\n" +
+				"6. Mostra os nomes dos clientes na matriz\n" +
+				"7. Fecha o programa";
+		
+		int acao = visao.recebeInt(menu);
+		while (acao != 7) {
+			if (acao == 1) {
+				String nome = visao.recebeString("Qual produto voce quer pesquisar ?");
+				visao.mostraString(matriz.quantosCompraram(nome) + 
+						" pessoas compraram " + nome);
+			} else if (acao == 2) {
+				String nome = visao.recebeString("Qual produto voce quer pesquisar ?");
+				visao.mostraString(matriz.quemPossue(nome) + " comprou " + nome);
+			} else if (acao == 3) {
+				String nome = visao.recebeString("Qual produto voce quer pesquisar ?");
+				if (matriz.naoExisteProduto(nome))
+					visao.mostraString("Este produto NAO existe nos arrays");
+				else
+					visao.mostraString("Este produto existe nos arrays");
+			} else if (acao == 4) {
+				String mensagem = "Existem " + matriz.quantidadeTotalClientes() +
+						" clientes no total,\n dos quais, " + matriz.quantidadeClientesEspeciais() +
+						" sao especiais.";
+				visao.mostraString(mensagem);
+			} else if (acao == 5) {
+				matriz.ordenarMatriz();
+				visao.mostraString("Matriz ordenada");
+			} else if (acao == 6) {
+				String mensagem = "";
+				for (int i = 0; i < linhas; i++) {
+					for (int j = 0; j < colunas; j++) {
+						mensagem += matriz.pegaCliente(i, j).getNome() + ", ";
+					}
+					mensagem += "\n";
+				}
+				visao.mostraString(mensagem);
+			}
+			acao = visao.recebeInt(menu);
+		}
+		
 	}
 
 }

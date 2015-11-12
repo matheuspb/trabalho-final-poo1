@@ -55,7 +55,7 @@ public class MatrizClientes {
 			}
 		}
 		// Ninguem comprou :
-		return "Ninguem comprou " + nome;
+		return "Ninguem";
 	}
 
 	public boolean naoExisteProduto(String nome) {
