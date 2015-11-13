@@ -6,7 +6,12 @@ public class MatrizClientes {
 
 	public MatrizClientes(int linhas, int colunas) {
 		super();
-		matriz = new Cliente[linhas][colunas];
+		if (linhas == 0 || colunas == 0) {
+			matriz = new Cliente[1][1];
+			matriz[0][0] = null;
+		}
+		else
+			matriz = new Cliente[linhas][colunas];
 	}
 	
 	public void colocaCliente(Cliente cliente, int linha, int coluna) {
@@ -78,7 +83,20 @@ public class MatrizClientes {
 		 * item 4:
 		 * retorna a quantidade total de clientes contidos na matriz
 		 */
-		return matriz.length * matriz[0].length;
+		int quantidade = 0;
+		if (matriz[0][0] == null)
+			return 0;
+		else {
+			for (int i = 0; i < matriz.length; i++) {
+				for (int j = 0; j < matriz[0].length; j++) {
+					if (matriz[i][j] == null)
+						continue;
+					else
+						quantidade++;
+				}
+			}
+		}
+		return quantidade;
 	}
 	
 	public int quantidadeClientesEspeciais() {
@@ -87,9 +105,13 @@ public class MatrizClientes {
 		 * retorna a quantidade de clientes especiais contidos na matriz
 		 */
 		int quantidade = 0;
+		if (matriz[0][0] == null)
+			return 0;
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[0].length; j++) {
-				if (matriz[i][j] instanceof ClienteEspecial)
+				if (matriz[i][j] == null)
+					continue;
+				else if (matriz[i][j] instanceof ClienteEspecial)
 					quantidade++;
 			}
 		}
@@ -101,13 +123,15 @@ public class MatrizClientes {
 		 * item 5:
 		 * ordena a matriz alfabeticamente
 		 */
-		Cliente[] clientes = new Cliente[matriz.length*matriz[0].length];
+		Cliente[] clientes = new Cliente[quantidadeTotalClientes()];
 		int indice = 0;
 		// trasnforma a matriz num array
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[0].length; j++) {
-				clientes[indice] = matriz[i][j];
-				indice++;
+				if (matriz[i][j] != null) {
+					clientes[indice] = matriz[i][j];
+					indice++;
+				}
 			}
 		}
 		// ordena o array auxiliar
@@ -116,7 +140,11 @@ public class MatrizClientes {
 		// coloca os elementos de volta na matriz, ordenados
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[0].length; j++) {
-				matriz[i][j] = clientes[indice];
+				if (indice >= clientes.length) {
+					matriz[i][j] = null;
+				} else {
+					matriz[i][j] = clientes[indice];
+				}
 				indice++;
 			}
 		}

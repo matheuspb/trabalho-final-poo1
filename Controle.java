@@ -102,7 +102,10 @@ public class Controle {
 				String mensagem = "";
 				for (int i = 0; i < linhas; i++) {
 					for (int j = 0; j < colunas; j++) {
-						mensagem += matriz.pegaCliente(i, j).getNome() + ", ";
+						if (matriz.pegaCliente(i, j) == null)
+							mensagem += "null, ";
+						else
+							mensagem += matriz.pegaCliente(i, j).getNome() + ", ";
 					}
 					mensagem += "\n";
 				}
