@@ -15,12 +15,20 @@ public class Controle {
 						" cliente na posicao " + i + " " + j + " ?(s/n)");
 				if (!adicionarCliente.equals("s"))
 					continue;
+				
 				Cliente novoCliente = new Cliente();
+				ClienteEspecial novoEspecial = new ClienteEspecial();
+				
 				String nomeCliente = visao.recebeString("Qual o nome do cliente" +
 						" na posicao " + i + " " + j + " ?");
 				novoCliente.setNome(nomeCliente);
+				
 				int numDeProdutos = visao.recebeInt("Quantos produtos ele comprou ?");
 				Produto[] novosProdutos = new Produto[numDeProdutos];
+				
+				double precoTotal = 0;
+				boolean especial = false;
+				
 				for (int k = 0; k < novosProdutos.length; k++) {
 					String nomeProduto = visao.recebeString("Qual o nome do " +
 							"produto " + (k+1) + " ?");
@@ -30,23 +38,42 @@ public class Controle {
 							"produto " + (k+1) + " ?");
 					double precoProduto = visao.recebeDouble("Qual o preco do " +
 							"produto " + (k+1) + " ?");
+					precoTotal += precoProduto;
+					
+					if (especial) {
+						// se for cliente especial aplica desconto
+						precoProduto *= novoEspecial.getDesconto();
+					}
+					
 					Produto novoProduto = new Produto(nomeProduto, marcaProduto,
 							tipoProduto, precoProduto);
 					novosProdutos[k] = novoProduto;
+					
+					if (precoTotal > 100 && !especial) {
+						// ultrapassou 100 reais, e ainda nao e' especial
+						// Transforma em ClienteEspecial com o construtor
+						novoEspecial = new ClienteEspecial(novoCliente, 0.1);
+						especial = true;
+					}
 				}
-				novoCliente.setProdutos(novosProdutos);
-				matriz.colocaCliente(novoCliente, i, j);
+				if (especial) {
+					novoEspecial.setProdutos(novosProdutos);
+					matriz.colocaCliente(novoEspecial, i, j);
+				} else {
+					novoCliente.setProdutos(novosProdutos);
+					matriz.colocaCliente(novoCliente, i, j);
+				}
 			}
 		}
 		
-		String menu = "Digite o numero da acao que voce quer realizar:\n" +
+		String menu = "Digite o numero da acao que voce quer realizar:\n\n" +
 				"1. Pesquisar quantos clientes compraram um produto\n" +
 				"2. Pesquisar a existencia de um produto, e se existir, quem o possue\n" +
 				"3. Pesquisar a inexistencia de um produto\n" +
 				"4. Informa a quantidade total de clientes, e quantos desses sao especiais\n" +
 				"5. Ordena a matriz alfabeticamente\n" +
-				"6. Mostra os nomes dos clientes na matriz\n" +
-				"7. Fecha o programa";
+				"6. Mostra os nomes dos clientes na matriz\n\n" +
+				"7. Fecha o programa\n\n";
 		
 		int acao = visao.recebeInt(menu);
 		while (acao != 7) {
