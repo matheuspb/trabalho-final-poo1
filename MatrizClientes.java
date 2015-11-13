@@ -25,6 +25,8 @@ public class MatrizClientes {
 		int quantidade = 0;
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[0].length; j++) {
+				if (matriz[i][j] == null)
+					continue;
 				Produto[] produtosComprados = matriz[i][j].getProdutos();
 				for (int k = 0; k < produtosComprados.length; k++) {
 					if (produtosComprados[k].getNome().equals(nome)) {
@@ -43,10 +45,11 @@ public class MatrizClientes {
 		 * retorna o primeiro cliente que contem determinado produto,
 		 * se ninguem comprou, retorna uma mensagem dizendo isso
 		 */
-		Produto[] produtosComprados;
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[0].length; j++) {
-				produtosComprados = matriz[i][j].getProdutos();
+				if (matriz[i][j] == null)
+					continue;
+				Produto[] produtosComprados = matriz[i][j].getProdutos();
 				for (int k = 0; k < produtosComprados.length; k++) {
 					if (produtosComprados[k].getNome().equals(nome))
 						return matriz[i][j].getNome();
