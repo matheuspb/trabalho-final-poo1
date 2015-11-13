@@ -84,16 +84,12 @@ public class MatrizClientes {
 		 * retorna a quantidade total de clientes contidos na matriz
 		 */
 		int quantidade = 0;
-		if (matriz[0][0] == null)
-			return 0;
-		else {
-			for (int i = 0; i < matriz.length; i++) {
-				for (int j = 0; j < matriz[0].length; j++) {
-					if (matriz[i][j] == null)
-						continue;
-					else
-						quantidade++;
-				}
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[0].length; j++) {
+				if (matriz[i][j] == null)
+					continue;
+				else
+					quantidade++;
 			}
 		}
 		return quantidade;
@@ -105,8 +101,6 @@ public class MatrizClientes {
 		 * retorna a quantidade de clientes especiais contidos na matriz
 		 */
 		int quantidade = 0;
-		if (matriz[0][0] == null)
-			return 0;
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[0].length; j++) {
 				if (matriz[i][j] == null)
@@ -141,6 +135,8 @@ public class MatrizClientes {
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[0].length; j++) {
 				if (indice >= clientes.length) {
+					// todos os clientes ja estao na matriz,
+					// isso preenche o resto com null.
 					matriz[i][j] = null;
 				} else {
 					matriz[i][j] = clientes[indice];

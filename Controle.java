@@ -42,7 +42,7 @@ public class Controle {
 					
 					if (especial) {
 						// se for cliente especial aplica desconto
-						precoProduto *= novoEspecial.getDesconto();
+						precoProduto *= (1 - novoEspecial.getDesconto());
 					}
 					
 					Produto novoProduto = new Produto(nomeProduto, marcaProduto,
@@ -53,6 +53,7 @@ public class Controle {
 						// ultrapassou 100 reais, e ainda nao e' especial
 						// Transforma em ClienteEspecial com o construtor
 						novoEspecial = new ClienteEspecial(novoCliente, 0.1);
+						// desconto de 10%
 						especial = true;
 					}
 				}
@@ -92,7 +93,8 @@ public class Controle {
 					visao.mostraString("Este produto existe nos arrays");
 			} else if (acao == 4) {
 				String mensagem = "Existem " + matriz.quantidadeTotalClientes() +
-						" clientes no total,\n dos quais, " + matriz.quantidadeClientesEspeciais() +
+						" clientes no total,\n dos quais, " + 
+						matriz.quantidadeClientesEspeciais() +
 						" sao especiais.";
 				visao.mostraString(mensagem);
 			} else if (acao == 5) {
