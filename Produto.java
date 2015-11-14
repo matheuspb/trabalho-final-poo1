@@ -38,4 +38,45 @@ public class Produto {
 		this.preco = preco;
 	}
 
+	public int compareTo(Object obj) {
+		Produto prod = (Produto) obj;
+		return this.nome.compareTo(prod.getNome());
+	}
+	
+	@Override
+	public String toString() {
+		return "Produto [nome=" + nome + ", marca=" + marca + ", tipo=" + tipo
+				+ ", preco=" + preco + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Produto))
+			return false;
+		Produto other = (Produto) obj;
+		if (marca == null) {
+			if (other.marca != null)
+				return false;
+		} else if (!marca.equals(other.marca))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (Double.doubleToLongBits(preco) != Double
+				.doubleToLongBits(other.preco))
+			return false;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
+			return false;
+		return true;
+	}
+
 }

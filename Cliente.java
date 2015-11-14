@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Cliente implements Comparable<Cliente> {
 	
 	private String nome;
@@ -30,6 +32,31 @@ public class Cliente implements Comparable<Cliente> {
 	}
 	public void setProdutos(Produto[] produtos) {
 		this.produtos = produtos;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [nome=" + nome + ", produtos="
+				+ Arrays.toString(produtos) + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Cliente))
+			return false;
+		Cliente other = (Cliente) obj;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (!Arrays.equals(produtos, other.produtos))
+			return false;
+		return true;
 	}
 	
 }

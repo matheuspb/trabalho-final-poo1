@@ -145,5 +145,24 @@ public class MatrizClientes {
 			}
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "MatrizClientes [matriz=" + Arrays.toString(matriz) + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof MatrizClientes))
+			return false;
+		MatrizClientes other = (MatrizClientes) obj;
+		if (!Arrays.deepEquals(matriz, other.matriz))
+			return false;
+		return true;
+	}
 	
 }

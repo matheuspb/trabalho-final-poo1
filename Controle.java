@@ -116,6 +116,8 @@ public class Controle {
 			acao = visao.recebeInt(menu);
 		}
 		
+		System.out.println(matriz.toString());
+		
 	}
 
 }
