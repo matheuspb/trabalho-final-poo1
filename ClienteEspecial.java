@@ -14,7 +14,7 @@ public class ClienteEspecial extends Cliente{
 	}
 
 	public ClienteEspecial(Cliente cliente, double desconto) {
-		// transforma um cliente normal em cliente epecial, e aplica o desconto
+		// transforma um cliente normal em cliente epecial
 		super(cliente.getNome(), cliente.getProdutos());
 		this.desconto = desconto;
 	}
